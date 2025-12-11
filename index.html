@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Content Marketing Automation for Jewelry Shops</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* === CSS Variables === */
+        :root {
+            --primary-gold: #D4A574;
+            --primary-rose: #E8C4B8;
+            --primary-dark: #2D2A26;
+            --secondary-cream: #FDF8F3;
+            --secondary-blush: #F5EBE6;
+            --secondary-taupe: #8B7355;
+            --accent-sage: #9CAF88;
+            --accent-dusty-rose: #C9A9A6;
+            --white: #FFFFFF;
+            --border-light: #E5DDD5;
+            --shadow-warm: rgba(45, 42, 38, 0.08);
+        }
+
+        /* === Reset & Base === */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            color: var(--primary-dark);
+            line-height: 1.7;
+            background: var(--secondary-cream);
+        }
+
+        /* === Typography === */
+        h1, h2, h3 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        h1 { font-size: 3.5em; margin-bottom: 0.5em; }
+        h2 { font-size: 2.5em; margin-bottom: 0.6em; }
+        h3 { font-size: 1.8em; margin-bottom: 0.5em; }
+        p { font-size: 1.4em; margin-bottom: 1em; }
+        li { font-size: 1.3em; margin-bottom: 0.5em; }
+
+        /* === Layout === */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        section {
+            padding: 100px 0;
+        }
+
+        section:nth-child(odd) {
+            background: var(--white);
+        }
+
+        section:nth-child(even) {
+            background: var(--secondary-cream);
+        }
+
+        /* === Navigation === */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 18px 40px;
+            z-index: 1000;
+            box-shadow: 0 2px 20px var(--shadow-warm);
+        }
+
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-brand {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4em;
+            font-weight: 700;
+            color: var(--primary-dark);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-link {
+            color: var(--secondary-taupe);
+            text-decoration: none;
+            font-size: 1.1em;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--primary-gold);
+        }
+
+        /* === Feature Images === */
+        .feature-image {
+            width: 100%;
+            max-width: 600px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(45, 42, 38, 0.2);
+            margin: 40px auto;
+            display: block;
+        }
+
+        .hero-image-container {
+            position: relative;
+            margin-top: 50px;
+        }
+
+        .hero-image {
+            width: 100%;
+            max-width: 700px;
+            border-radius: 24px;
+            box-shadow: 0 30px 80px rgba(212, 165, 116, 0.3);
+        }
+
+        .section-with-image {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .section-with-image .image-side {
+            position: relative;
+        }
+
+        .section-with-image .image-side img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(45, 42, 38, 0.15);
+        }
+
+        .image-caption {
+            text-align: center;
+            font-size: 1.1em;
+            color: var(--secondary-taupe);
+            margin-top: 15px;
+            font-style: italic;
+        }
+
+        @media (max-width: 992px) {
+            .section-with-image {
+                grid-template-columns: 1fr;
+            }
+            .section-with-image .image-side {
+                order: -1;
+            }
+        }
+
+        /* === Hero Section === */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(135deg, var(--secondary-cream) 0%, var(--secondary-blush) 50%, var(--primary-rose) 100%);
+            padding: 120px 40px 80px;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero h1 {
+            font-size: 4em;
+            color: var(--primary-dark);
+            margin-bottom: 25px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.6em;
+            color: var(--secondary-taupe);
+            margin-bottom: 40px;
+            font-weight: 400;
+        }
+
+        .hero-cta {
+            display: inline-block;
+            background: var(--primary-gold);
+            color: var(--white);
+            padding: 20px 45px;
+            border-radius: 50px;
+            font-size: 1.3em;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            box-shadow: 0 8px 30px rgba(212, 165, 116, 0.3);
+        }
+
+        .hero-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(212, 165, 116, 0.4);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-indicator span {
+            display: block;
+            width: 30px;
+            height: 50px;
+            border: 3px solid var(--primary-gold);
+            border-radius: 20px;
+            position: relative;
+        }
+
+        .scroll-indicator span::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            width: 6px;
+            height: 6px;
+            background: var(--primary-gold);
+            border-radius: 50%;
+            transform: translateX(-50%);
+            animation: scrollDot 2s infinite;
+        }
+
+        /* === Challenge Section === */
+        .challenge-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .challenge-card {
+            background: var(--white);
+            padding: 35px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px var(--shadow-warm);
+            border-left: 5px solid var(--accent-dusty-rose);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .challenge-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(212, 165, 116, 0.15);
+        }
+
+        .challenge-icon {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+
+        .challenge-card h3 {
+            font-size: 1.4em;
+            margin-bottom: 10px;
+        }
+
+        .challenge-card p {
+            font-size: 1.15em;
+            color: var(--secondary-taupe);
+            margin-bottom: 0;
+        }
+
+        .transition-text {
+            text-align: center;
+            margin-top: 60px;
+            font-size: 1.6em;
+            color: var(--primary-gold);
+            font-style: italic;
+        }
+
+        /* === Step Sections === */
+        .step-header {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .step-badge {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--primary-gold), var(--accent-dusty-rose));
+            color: var(--white);
+            border-radius: 50%;
+            font-size: 1.8em;
+            font-weight: 700;
+            font-family: 'Playfair Display', serif;
+            flex-shrink: 0;
+        }
+
+        .step-title {
+            margin-bottom: 0;
+        }
+
+        .step-intro {
+            font-size: 1.35em;
+            color: var(--secondary-taupe);
+            margin-bottom: 40px;
+            max-width: 800px;
+        }
+
+        /* === AI Prompt Box === */
+        .prompt-box {
+            background: linear-gradient(135deg, var(--secondary-blush), var(--secondary-cream));
+            border: 2px solid var(--primary-gold);
+            border-radius: 16px;
+            padding: 30px;
+            margin: 35px 0;
+            position: relative;
+        }
+
+        .prompt-label {
+            position: absolute;
+            top: -14px;
+            left: 25px;
+            background: var(--primary-gold);
+            color: var(--white);
+            padding: 6px 18px;
+            border-radius: 20px;
+            font-size: 0.95em;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .prompt-title {
+            font-size: 1.3em;
+            font-weight: 600;
+            margin-bottom: 15px;
+            margin-top: 10px;
+        }
+
+        .prompt-content {
+            background: var(--white);
+            padding: 25px;
+            border-radius: 10px;
+            font-family: 'Monaco', 'Consolas', 'Courier New', monospace;
+            font-size: 1.1em;
+            color: var(--primary-dark);
+            line-height: 1.8;
+            margin-bottom: 20px;
+            border: 1px solid var(--border-light);
+        }
+
+        .copy-btn {
+            background: var(--primary-gold);
+            color: var(--white);
+            border: none;
+            padding: 12px 28px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .copy-btn:hover {
+            background: var(--secondary-taupe);
+        }
+
+        .copy-btn.copied {
+            background: var(--accent-sage);
+        }
+
+        /* === Tip Box === */
+        .tip-box {
+            background: linear-gradient(120deg, var(--secondary-blush) 0%, var(--secondary-cream) 100%);
+            border-left: 5px solid var(--primary-gold);
+            padding: 25px 35px;
+            border-radius: 0 12px 12px 0;
+            margin: 35px 0;
+        }
+
+        .tip-label {
+            font-weight: 700;
+            color: var(--primary-gold);
+            margin-bottom: 10px;
+            font-size: 1.15em;
+        }
+
+        .tip-box p {
+            margin-bottom: 0;
+            font-size: 1.25em;
+        }
+
+        /* === Before/After === */
+        .comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin: 40px 0;
+        }
+
+        .comparison-card {
+            padding: 30px;
+            border-radius: 16px;
+        }
+
+        .comparison-card.before {
+            background: var(--secondary-blush);
+            border: 2px dashed var(--border-light);
+        }
+
+        .comparison-card.after {
+            background: var(--white);
+            border: 2px solid var(--primary-gold);
+            box-shadow: 0 8px 30px rgba(212, 165, 116, 0.2);
+        }
+
+        .comparison-label {
+            font-weight: 700;
+            font-size: 1.1em;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .before .comparison-label { color: var(--secondary-taupe); }
+        .after .comparison-label { color: var(--primary-gold); }
+
+        .comparison-text {
+            font-size: 1.2em;
+            line-height: 1.8;
+            font-style: italic;
+        }
+
+        /* === Content Pillars Grid === */
+        .pillars-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+            margin: 40px 0;
+        }
+
+        .pillar-card {
+            background: var(--white);
+            padding: 30px 25px;
+            border-radius: 16px;
+            text-align: center;
+            border-top: 5px solid var(--primary-gold);
+            box-shadow: 0 4px 20px var(--shadow-warm);
+            transition: transform 0.3s;
+        }
+
+        .pillar-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .pillar-card:nth-child(2) { border-top-color: var(--accent-dusty-rose); }
+        .pillar-card:nth-child(3) { border-top-color: var(--accent-sage); }
+        .pillar-card:nth-child(4) { border-top-color: var(--secondary-taupe); }
+
+        .pillar-icon {
+            font-size: 2.8em;
+            margin-bottom: 15px;
+        }
+
+        .pillar-card h3 {
+            font-size: 1.3em;
+            margin-bottom: 10px;
+        }
+
+        .pillar-card p {
+            font-size: 1.05em;
+            color: var(--secondary-taupe);
+            margin-bottom: 0;
+        }
+
+        /* === Email Types === */
+        .email-types {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            margin: 40px 0;
+        }
+
+        .email-type {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 12px;
+            border-left: 4px solid var(--primary-gold);
+            box-shadow: 0 4px 15px var(--shadow-warm);
+        }
+
+        .email-type h3 {
+            font-size: 1.35em;
+            margin-bottom: 10px;
+        }
+
+        .email-type p {
+            font-size: 1.1em;
+            color: var(--secondary-taupe);
+            margin-bottom: 0;
+        }
+
+        /* === Metrics Grid === */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin: 40px 0;
+        }
+
+        .metric-card {
+            background: linear-gradient(135deg, var(--primary-gold), var(--accent-dusty-rose));
+            color: var(--white);
+            padding: 30px 20px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .metric-icon {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .metric-card h3 {
+            font-size: 1.15em;
+            margin-bottom: 5px;
+        }
+
+        .metric-card p {
+            font-size: 0.95em;
+            opacity: 0.9;
+            margin-bottom: 0;
+        }
+
+        /* === Final CTA Section === */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, #3D3832 100%) !important;
+            color: var(--white);
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            color: var(--white);
+            font-size: 3em;
+        }
+
+        .cta-section p {
+            color: var(--primary-rose);
+        }
+
+        .cta-benefits {
+            list-style: none;
+            margin: 40px 0;
+        }
+
+        .cta-benefits li {
+            font-size: 1.4em;
+            margin-bottom: 15px;
+            color: var(--secondary-cream);
+        }
+
+        .cta-benefits li::before {
+            content: "\2713";
+            color: var(--primary-gold);
+            margin-right: 15px;
+            font-weight: bold;
+        }
+
+        .final-cta-btn {
+            display: inline-block;
+            background: var(--primary-gold);
+            color: var(--primary-dark);
+            padding: 22px 55px;
+            border-radius: 50px;
+            font-size: 1.4em;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s;
+            margin-top: 20px;
+        }
+
+        .final-cta-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 45px rgba(212, 165, 116, 0.4);
+        }
+
+        .trust-text {
+            margin-top: 40px;
+            font-size: 1.1em;
+            color: var(--secondary-taupe);
+        }
+
+        /* === Footer === */
+        footer {
+            background: var(--primary-dark);
+            color: var(--secondary-cream);
+            padding: 40px;
+            text-align: center;
+        }
+
+        footer p {
+            font-size: 1em;
+            margin-bottom: 0;
+        }
+
+        /* === Animations === */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-15px); }
+            60% { transform: translateX(-50%) translateY(-8px); }
+        }
+
+        @keyframes scrollDot {
+            0% { top: 10px; opacity: 1; }
+            100% { top: 30px; opacity: 0; }
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* === Responsive === */
+        @media (max-width: 1024px) {
+            .pillars-grid, .metrics-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5em; }
+            h2 { font-size: 2em; }
+            p { font-size: 1.2em; }
+
+            .hero h1 { font-size: 2.8em; }
+            .hero-subtitle { font-size: 1.3em; }
+
+            .nav-links { display: none; }
+
+            .challenge-grid,
+            .comparison,
+            .email-types {
+                grid-template-columns: 1fr;
+            }
+
+            .pillars-grid, .metrics-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .step-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            section { padding: 70px 0; }
+            .container { padding: 0 25px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="#hero" class="nav-brand">Jewelry Content AI</a>
+            <ul class="nav-links">
+                <li><a href="#challenges" class="nav-link">Challenges</a></li>
+                <li><a href="#step1" class="nav-link">Brand Voice</a></li>
+                <li><a href="#step2" class="nav-link">Descriptions</a></li>
+                <li><a href="#step3" class="nav-link">Calendar</a></li>
+                <li><a href="#step4" class="nav-link">Email</a></li>
+                <li><a href="#step5" class="nav-link">Measure</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <h1>Sparkle Online: AI-Powered Content Marketing for Jewelry Shops</h1>
+            <p class="hero-subtitle">Create beautiful, engaging content in minutes instead of hours - no tech skills required</p>
+            <a href="#step1" class="hero-cta">Start Your Content Journey</a>
+            <div class="hero-image-container animate-on-scroll">
+                <img src="images/hero-woman-laptop.png" alt="Happy jewelry shop owner celebrating success with AI content marketing" class="hero-image">
+                <p class="image-caption">Join hundreds of jewelry shop owners transforming their business with AI</p>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <span></span>
+        </div>
+    </section>
+
+    <!-- Challenge Section -->
+    <section id="challenges">
+        <div class="container">
+            <h2 class="animate-on-scroll" style="text-align: center;">We Understand Your Challenges</h2>
+            <p class="animate-on-scroll" style="text-align: center; max-width: 700px; margin: 0 auto 20px;">Running a jewelry shop is demanding. Between serving customers, managing inventory, and creating stunning pieces, who has time for content marketing?</p>
+
+            <div class="challenge-grid">
+                <div class="challenge-card animate-on-scroll">
+                    <div class="challenge-icon">&#x23F1;</div>
+                    <h3>Finding Time</h3>
+                    <p>Balancing customer service, inventory management, and marketing feels impossible when every minute counts.</p>
+                </div>
+                <div class="challenge-card animate-on-scroll">
+                    <div class="challenge-icon">&#x270D;</div>
+                    <h3>Writing Descriptions</h3>
+                    <p>Capturing the beauty, craftsmanship, and emotion of your pieces in words is harder than it looks.</p>
+                </div>
+                <div class="challenge-card animate-on-scroll">
+                    <div class="challenge-icon">&#x1F4F1;</div>
+                    <h3>Staying Consistent</h3>
+                    <p>Posting regularly on social media while running a business? It's exhausting to keep up.</p>
+                </div>
+                <div class="challenge-card animate-on-scroll">
+                    <div class="challenge-icon">&#x2728;</div>
+                    <h3>Standing Out</h3>
+                    <p>Making your unique story and craftsmanship shine in a crowded online marketplace.</p>
+                </div>
+            </div>
+
+            <p class="transition-text animate-on-scroll">What if there was a simpler way?</p>
+
+            <div class="animate-on-scroll" style="margin-top: 50px;">
+                <img src="images/team-celebration.png" alt="Jewelry shop team celebrating content marketing success" class="feature-image">
+                <p class="image-caption">Your team can celebrate these wins too!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Step 1: Brand Voice -->
+    <section id="step1">
+        <div class="container">
+            <div class="step-header animate-on-scroll">
+                <div class="step-badge">1</div>
+                <h2 class="step-title">Define Your Brand Voice</h2>
+            </div>
+            <p class="step-intro animate-on-scroll">Your brand voice is your shop's personality in writing. Before creating content, let's discover what makes your jewelry business unique.</p>
+
+            <div class="prompt-box animate-on-scroll">
+                <span class="prompt-label">AI Prompt</span>
+                <p class="prompt-title">Discover Your Brand Personality</p>
+                <div class="prompt-content" id="prompt1">Help me define my jewelry brand voice. My shop specializes in [handcrafted/vintage/modern/luxury] jewelry. My typical customer is [describe: age, style, occasion]. I want my brand to feel [3 words: e.g., elegant, approachable, sophisticated]. What tone and style should my content have?</div>
+                <button class="copy-btn" onclick="copyPrompt('prompt1', this)">Copy Prompt</button>
+            </div>
+
+            <div class="prompt-box animate-on-scroll">
+                <span class="prompt-label">AI Prompt</span>
+                <p class="prompt-title">Create Brand Guidelines</p>
+                <div class="prompt-content" id="prompt2">Based on my jewelry brand that is [describe style], create a simple brand voice guide including: 5 words we always use, 5 words we never use, our tone (formal/casual), and 3 example sentences in our brand voice.</div>
+                <button class="copy-btn" onclick="copyPrompt('prompt2', this)">Copy Prompt</button>
+            </div>
+
+            <div class="tip-box animate-on-scroll">
+                <p class="tip-label">Pro Tip</p>
+                <p>Save your brand voice guide and reference it every time you create content. Consistency builds recognition and trust with your customers.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Step 2: Product Descriptions -->
+    <section id="step2">
+        <div class="container">
+            <div class="step-header animate-on-scroll">
+                <div class="step-badge">2</div>
+                <h2 class="step-title">Product Descriptions That Sparkle</h2>
+            </div>
+            <p class="step-intro animate-on-scroll">Transform basic product details into compelling stories that connect emotionally with buyers and help them imagine wearing your pieces.</p>
+
+            <div class="comparison animate-on-scroll">
+                <div class="comparison-card before">
+                    <p class="comparison-label">Before</p>
+                    <p class="comparison-text">"Gold necklace, 18 inches, heart pendant. 14k gold. Lobster clasp."</p>
+                </div>
+                <div class="comparison-card after">
+                    <p class="comparison-label">After</p>
+                    <p class="comparison-text">"A whisper of romance: This delicate 18-inch chain cradles a heart pendant that catches the light with every movement. Crafted in warm 14k gold, it's the perfect way to keep love close - whether it's a gift for someone special or a treasure for yourself."</p>
+                </div>
+            </div>
+
+            <div class="prompt-box animate-on-scroll">
+                <span class="prompt-label">AI Prompt</span>
+                <p class="prompt-title">Write Compelling Product Descriptions</p>
+                <div class="prompt-content" id="prompt3">Write a product description for my [piece type: ring/necklace/bracelet/earrings]. Details: [material, size, gemstones, unique features]. Target customer: [who would buy this]. Occasion: [gift/self-purchase/special event]. Tone: [from my brand voice]. Include the feeling it evokes and why it's special.</div>
+                <button class="copy-btn" onclick="copyPrompt('prompt3', this)">Copy Prompt</button>
+            </div>
+
+            <div class="prompt-box animate-on-scroll">
+                <span class="prompt-label">AI Prompt</span>
+                <p class="prompt-title">Batch Create Multiple Descriptions</p>
+                <div class="prompt-content" id="prompt4">I need to write descriptions for 5 jewelry pieces. For each, I'll give you: name, type, material, and price point. Create descriptions that are 2-3 sentences, emotionally engaging, and highlight what makes each piece special. My brand voice is [your voice]. Here are the pieces: [list them]</div>
+                <button class="copy-btn" onclick="copyPrompt('prompt4', this)">Copy Prompt</button>
+            </div>
+
+            <div class="tip-box animate-on-scroll">
+                <p class="tip-label">Pro Tip</p>
+                <p>Always mention the feeling the piece evokes - customers buy emotions, not just metal and stones. "Makes you feel confident" sells better than "high-quality craftsmanship."</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Step 3: Content Calendar -->
+    <section id="step3">
+        <div class="container">
+            <div class="step-header animate-on-scroll">
+                <div class="step-badge">3</div>
+                <h2 class="step-title">Your 30-Day Content Calendar</h2>
+            </div>
+            <p class="step-intro animate-on-scroll">Stop wondering "what should I post today?" Build a content calendar around four key pillars that showcase your expertise and keep customers engaged.</p>
+
+            <div class="pillars-grid">
+                <div class="pillar-card animate-on-scroll">
+                    <div class="pillar-icon">&#x1F48D;</div>
+                    <h3>Product Spotlights</h3>
+                    <p>Showcase individual pieces with stories, details, and styling ideas</p>
+                </div>
+                <div class="pillar-card animate-on-scroll">
+                    <div class="pillar-icon">&#x1F3AD;</div>
+                    <h3>Behind the Scenes</h3>
+                    <p>Show your craft, workspace, and the passion behind your creations</p>
+                </div>
+                <div class="pillar-card animate-on-scroll">
+                    <div class="pillar-icon">&#x1F451;</div>
+                    <h3>Styling Tips</h3>
+                    <p>Help customers imagine how to wear and pair your jewelry</p>
+                </div>
+                <div class="pillar-card animate-on-scroll">
+                    <div class="pillar-icon">&#x1F496;</div>
+                    <h3>Customer Stories</h3>
+                    <p>Share testimonials, photos, and the moments your jewelry celebrates</p>
+                </div>
+            </div>
+
+            <div class="prompt-box animate-on-scroll">
+                <span class="prompt-label">AI Prompt</span>
+                <p class="prompt-title">Generate a Weekly Content Calendar</p>
+                <div class="prompt-content" id="prompt5">Create a 7-day social media content calendar for my jewelry shop. Include: Monday (Product Spotlight), Tuesday (Behind the Scenes), Wednesday (Styling Tip), Thursday (Customer Story or Testimonial), Friday (Product Spotlight), Saturday (Fun/Engagement post), Sunday (Week ahead preview). For each day, give me: post idea, caption draft, and 5 relevant hashtags. My brand voice is [your voice] and I specialize in [your specialty].</div>
+                <button class="copy-btn" onclick="copyPrompt('prompt5', this)">Copy Prompt</button>
+            </div>
+
+            <div class="prompt-box animate-on-scroll">
+                <span class="prompt-label">AI Prompt</span>
+                <p class="prompt-title">Create Seasonal Content</p>
+                <div class="prompt-content" id="prompt6">Create 10 content ideas for [upcoming season/holiday: Valentine's Day, Mother's Day, Holiday Season, etc.] for my jewelry shop. Include a mix of promotional posts, gift guides, and emotional storytelling. Each idea should have a hook, main message, and call-to-action.</div>
+                <button class="copy-btn" onclick="copyPrompt('prompt6', this)">Copy Prompt</button>
+            </div>
+
+            <div class="tip-box animate-on-scroll">
+                <p class="tip-label">Pro Tip</p>
+                <p>Batch your content creation! Spend 2 hours once a week generating all your posts, then schedule them. This saves more time than creating daily.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Step 4: Email Marketing -->
+    <section id="step4">
+        <div class="container">
+            <div class="step-header animate-on-scroll">
+                <div class="step-badge">4</div>
+                <h2 class="step-title">Email Marketing Made Easy</h2>
+            </div>
+            <p class="step-intro animate-on-scroll">Email is your direct line to customers who want to hear from you. Set up automated sequences that nurture relationships and drive sales while you sleep.</p>
+
+            <div class="email-types">
+                <div class="email-type animate-on-scroll">
+                    <h3>&#x1F44B; Welcome Series</h3>
+                    <p>Greet new subscribers, share your story, and offer a first-purchase incentive</p>
+                </div>
+                <div class="email-type animate-on-scroll">
+                    <h3>&#x1F389; Product Launches</h3>
+                    <p>Build anticipation, reveal new pieces, and create urgency</p>
+                </div>
+                <div class="email-type animate-on-scroll">
+                    <h3>&#x1F343; Seasonal Collections</h3>
+                    <p>Highlight pieces perfect for upcoming holidays and seasons</p>
+                </div>
+                <div class="email-type animate-on-scroll">
+                    <h3>&#x1F49D; Re-engagement</h3>
+                    <p>Win back customers who haven't purchased in a while</p>
+                </div>
+            </div>
+
+            <div class="prompt-box animate-on-scroll">
+                <span class="prompt-label">AI Prompt</span>
+                <p class="prompt-title">Create a Welcome Email Series</p>
+                <div class="prompt-content" id="prompt7">Write a 3-email welcome series for new subscribers to my jewelry shop newsletter. Email 1 (Day 1): Welcome and brand story. Email 2 (Day 3): Showcase bestsellers and what makes us unique. Email 3 (Day 5): Special offer for first purchase. My brand is [describe] and my voice is [your brand voice]. Include subject lines that get opened.</div>
+                <button class="copy-btn" onclick="copyPrompt('prompt7', this)">Copy Prompt</button>
+            </div>
+
+            <div class="prompt-box animate-on-scroll">
+                <span class="prompt-label">AI Prompt</span>
+                <p class="prompt-title">Generate Subject Lines That Convert</p>
+                <div class="prompt-content" id="prompt8">Generate 10 email subject lines for my jewelry shop for [purpose: new collection launch / holiday sale / back in stock / abandoned cart]. They should be: under 50 characters, create curiosity or urgency, match my brand voice [describe], and avoid spam trigger words. Give me both subtle/elegant and bold/direct options.</div>
+                <button class="copy-btn" onclick="copyPrompt('prompt8', this)">Copy Prompt</button>
+            </div>
+
+            <div class="tip-box animate-on-scroll">
+                <p class="tip-label">Pro Tip</p>
+                <p>Your subject line determines whether your email gets opened. Test different styles (questions, emojis, personalization) and track what works for your audience.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Step 5: Measure & Refine -->
+    <section id="step5">
+        <div class="container">
+            <div class="step-header animate-on-scroll">
+                <div class="step-badge">5</div>
+                <h2 class="step-title">Measure & Refine Your Strategy</h2>
+            </div>
+            <p class="step-intro animate-on-scroll">Content marketing is a journey, not a destination. Track what resonates with your audience and continuously improve your approach.</p>
+
+            <div class="metrics-grid">
+                <div class="metric-card animate-on-scroll">
+                    <div class="metric-icon">&#x1F4AC;</div>
+                    <h3>Engagement</h3>
+                    <p>Likes, comments, shares</p>
+                </div>
+                <div class="metric-card animate-on-scroll">
+                    <div class="metric-icon">&#x1F517;</div>
+                    <h3>Click-Through</h3>
+                    <p>Link clicks to your shop</p>
+                </div>
+                <div class="metric-card animate-on-scroll">
+                    <div class="metric-icon">&#x1F4B0;</div>
+                    <h3>Conversions</h3>
+                    <p>Sales from content</p>
+                </div>
+                <div class="metric-card animate-on-scroll">
+                    <div class="metric-icon">&#x1F4C8;</div>
+                    <h3>Growth</h3>
+                    <p>New followers & subscribers</p>
+                </div>
+            </div>
+
+            <div class="prompt-box animate-on-scroll">
+                <span class="prompt-label">AI Prompt</span>
+                <p class="prompt-title">Analyze Your Content Performance</p>
+                <div class="prompt-content" id="prompt9">Help me analyze my content performance. My top 3 performing posts were about [topics] and got [engagement numbers]. My lowest performing posts were about [topics] with [numbers]. What patterns do you see? What should I do more of? What should I change? Give me 5 specific recommendations.</div>
+                <button class="copy-btn" onclick="copyPrompt('prompt9', this)">Copy Prompt</button>
+            </div>
+
+            <div class="prompt-box animate-on-scroll">
+                <span class="prompt-label">AI Prompt</span>
+                <p class="prompt-title">Monthly Content Review</p>
+                <div class="prompt-content" id="prompt10">I'm doing my monthly content review for my jewelry shop. This month I posted [number] times across [platforms]. My goals were [list goals]. Here are my results: [share metrics]. Help me identify: What worked well, what to improve, and create 3 experiments to try next month.</div>
+                <button class="copy-btn" onclick="copyPrompt('prompt10', this)">Copy Prompt</button>
+            </div>
+
+            <div class="tip-box animate-on-scroll">
+                <p class="tip-label">Pro Tip</p>
+                <p>Review your analytics weekly, but only make strategic changes monthly. Give your content time to work before pivoting.</p>
+            </div>
+
+            <div class="animate-on-scroll" style="margin-top: 50px;">
+                <img src="images/woman-phone-success.png" alt="Entrepreneur celebrating viral content success on phone" class="feature-image">
+                <p class="image-caption">That moment when your content goes viral!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="cta-section">
+        <div class="container" style="text-align: center;">
+            <h2 class="animate-on-scroll">Ready to Let Your Jewelry Shine Online?</h2>
+            <p class="animate-on-scroll" style="font-size: 1.5em; max-width: 700px; margin: 0 auto;">You now have the complete toolkit to create professional, engaging content that attracts customers and grows your business.</p>
+
+            <ul class="cta-benefits animate-on-scroll">
+                <li>Save hours every week with AI-powered content creation</li>
+                <li>Build a consistent, professional brand presence</li>
+                <li>Connect emotionally with your ideal customers</li>
+            </ul>
+
+            <a href="#step1" class="final-cta-btn animate-on-scroll">Start Creating Today</a>
+
+            <p class="trust-text animate-on-scroll">Join hundreds of jewelry shop owners who have transformed their content marketing</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Content Marketing for Jewelry Shops. Created with expertise and AI assistance.</p>
+    </footer>
+
+    <script>
+        // Copy to clipboard functionality
+        function copyPrompt(promptId, btn) {
+            const text = document.getElementById(promptId).textContent;
+            navigator.clipboard.writeText(text).then(() => {
+                btn.textContent = 'Copied!';
+                btn.classList.add('copied');
+                setTimeout(() => {
+                    btn.textContent = 'Copy Prompt';
+                    btn.classList.remove('copied');
+                }, 2000);
+            });
+        }
+
+        // Scroll animation with Intersection Observer
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Active navigation highlighting
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 120;
+                if (scrollY >= sectionTop) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').slice(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
