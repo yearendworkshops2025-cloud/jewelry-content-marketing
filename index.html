@@ -120,6 +120,96 @@
             color: var(--primary-gold);
         }
 
+        /* === Industry Selector === */
+        .industry-selector {
+            position: fixed;
+            top: 80px;
+            left: 20px;
+            z-index: 999;
+        }
+
+        .industry-btn {
+            background: linear-gradient(135deg, var(--primary-gold), var(--accent-dusty-rose));
+            color: var(--white);
+            border: none;
+            padding: 12px 20px;
+            border-radius: 30px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 15px rgba(212, 165, 116, 0.4);
+            transition: all 0.3s;
+        }
+
+        .industry-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(212, 165, 116, 0.5);
+        }
+
+        .industry-btn .arrow {
+            transition: transform 0.3s;
+        }
+
+        .industry-btn.open .arrow {
+            transform: rotate(180deg);
+        }
+
+        .industry-dropdown {
+            position: absolute;
+            top: 55px;
+            left: 0;
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+            overflow: hidden;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s;
+            min-width: 200px;
+        }
+
+        .industry-dropdown.open {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .industry-option {
+            padding: 15px 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: background 0.2s;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .industry-option:last-child {
+            border-bottom: none;
+        }
+
+        .industry-option:hover {
+            background: var(--secondary-blush);
+        }
+
+        .industry-option.active {
+            background: var(--secondary-cream);
+            font-weight: 700;
+        }
+
+        .industry-option .icon {
+            font-size: 1.5em;
+        }
+
+        .industry-option .label {
+            font-size: 1.05em;
+            color: var(--primary-dark);
+        }
+
         /* === Feature Images === */
         .feature-image {
             width: 100%;
@@ -716,11 +806,34 @@
         </div>
     </nav>
 
+    <!-- Industry Selector -->
+    <div class="industry-selector">
+        <button class="industry-btn" onclick="toggleDropdown()">
+            <span class="current-icon">💎</span>
+            <span class="current-industry">Jewelry Shop</span>
+            <span class="arrow">▼</span>
+        </button>
+        <div class="industry-dropdown" id="industryDropdown">
+            <div class="industry-option active" data-industry="jewelry" onclick="switchIndustry('jewelry')">
+                <span class="icon">💎</span>
+                <span class="label">Jewelry Shop</span>
+            </div>
+            <div class="industry-option" data-industry="beauty" onclick="switchIndustry('beauty')">
+                <span class="icon">💅</span>
+                <span class="label">Beauty Salon</span>
+            </div>
+            <div class="industry-option" data-industry="restaurant" onclick="switchIndustry('restaurant')">
+                <span class="icon">🍔</span>
+                <span class="label">Take Away Restaurant</span>
+            </div>
+        </div>
+    </div>
+
     <!-- Hero Section -->
     <section class="hero" id="hero">
         <div class="hero-content">
-            <h1>Sparkle Online: AI-Powered Content Marketing for Jewelry Shops</h1>
-            <p class="hero-subtitle">Create beautiful, engaging content in minutes instead of hours - no tech skills required</p>
+            <h1 id="heroTitle">Sparkle Online: AI-Powered Content Marketing for Jewelry Shops</h1>
+            <p class="hero-subtitle" id="heroSubtitle">Create beautiful, engaging content in minutes instead of hours - no tech skills required</p>
             <a href="#step1" class="hero-cta">Start Your Content Journey</a>
             <div class="hero-image-container animate-on-scroll">
                 <img src="images/hero-woman-laptop.png" alt="Happy jewelry shop owner celebrating success with AI content marketing" class="hero-image">
@@ -1025,6 +1138,212 @@
     </footer>
 
     <script>
+        // === INDUSTRY CONTENT DATA ===
+        const industryContent = {
+            jewelry: {
+                icon: '💎',
+                name: 'Jewelry Shop',
+                title: 'Sparkle Online: AI-Powered Content Marketing for Jewelry Shops',
+                subtitle: 'Create beautiful, engaging content in minutes instead of hours - no tech skills required',
+                navBrand: 'Jewelry Content AI',
+                pageTitle: 'Content Marketing Automation for Jewelry Shops',
+                challengeTitle: 'We Understand Your Challenges',
+                challengeIntro: 'Running a jewelry shop is demanding. Between serving customers, managing inventory, and creating stunning pieces, who has time for content marketing?',
+                challenges: [
+                    { icon: '⏱', title: 'Finding Time', desc: 'Balancing customer service, inventory management, and marketing feels impossible when every minute counts.' },
+                    { icon: '✍', title: 'Writing Descriptions', desc: 'Capturing the beauty, craftsmanship, and emotion of your pieces in words is harder than it looks.' },
+                    { icon: '📱', title: 'Staying Consistent', desc: 'Posting regularly on social media while running a business? It\'s exhausting to keep up.' },
+                    { icon: '✨', title: 'Standing Out', desc: 'Making your unique story and craftsmanship shine in a crowded online marketplace.' }
+                ],
+                step1Title: 'Define Your Brand Voice',
+                step1Intro: 'Your brand voice is your shop\'s personality in writing. Before creating content, let\'s discover what makes your jewelry business unique.',
+                prompt1: 'Help me define my jewelry brand voice. My shop specializes in [handcrafted/vintage/modern/luxury] jewelry. My typical customer is [describe: age, style, occasion]. I want my brand to feel [3 words: e.g., elegant, approachable, sophisticated]. What tone and style should my content have?',
+                prompt2: 'Based on my jewelry brand that is [describe style], create a simple brand voice guide including: 5 words we always use, 5 words we never use, our tone (formal/casual), and 3 example sentences in our brand voice.',
+                step2Title: 'Product Descriptions That Sparkle',
+                step2Intro: 'Transform basic product details into compelling stories that connect emotionally with buyers and help them imagine wearing your pieces.',
+                beforeExample: '"Gold necklace, 18 inches, heart pendant. 14k gold. Lobster clasp."',
+                afterExample: '"A whisper of romance: This delicate 18-inch chain cradles a heart pendant that catches the light with every movement. Crafted in warm 14k gold, it\'s the perfect way to keep love close - whether it\'s a gift for someone special or a treasure for yourself."',
+                prompt3: 'Write a product description for my [piece type: ring/necklace/bracelet/earrings]. Details: [material, size, gemstones, unique features]. Target customer: [who would buy this]. Occasion: [gift/self-purchase/special event]. Tone: [from my brand voice]. Include the feeling it evokes and why it\'s special.',
+                pillars: [
+                    { icon: '💍', title: 'Product Spotlights', desc: 'Showcase individual pieces with stories, details, and styling ideas' },
+                    { icon: '🎭', title: 'Behind the Scenes', desc: 'Show your craft, workspace, and the passion behind your creations' },
+                    { icon: '👑', title: 'Styling Tips', desc: 'Help customers imagine how to wear and pair your jewelry' },
+                    { icon: '💖', title: 'Customer Stories', desc: 'Share testimonials, photos, and the moments your jewelry celebrates' }
+                ],
+                ctaTitle: 'Ready to Let Your Jewelry Shine Online?',
+                ctaText: 'You now have the complete toolkit to create professional, engaging content that attracts customers and grows your business.',
+                trustText: 'Join hundreds of jewelry shop owners who have transformed their content marketing'
+            },
+            beauty: {
+                icon: '💅',
+                name: 'Beauty Salon',
+                title: 'Glow Up Online: AI-Powered Content Marketing for Beauty Salons',
+                subtitle: 'Create stunning content that books appointments - no marketing degree required',
+                navBrand: 'Beauty Content AI',
+                pageTitle: 'Content Marketing Automation for Beauty Salons',
+                challengeTitle: 'We Understand Your Challenges',
+                challengeIntro: 'Running a beauty salon is non-stop. Between clients, appointments, and keeping up with trends, who has time for Instagram?',
+                challenges: [
+                    { icon: '⏱', title: 'Finding Time', desc: 'Between back-to-back appointments and managing staff, marketing falls to the bottom of the list.' },
+                    { icon: '📸', title: 'Photo Perfection', desc: 'Taking photos that truly capture your work while clients are rushing out the door.' },
+                    { icon: '📱', title: 'Staying Consistent', desc: 'Posting regularly when you\'re exhausted after a full day of clients.' },
+                    { icon: '✨', title: 'Standing Out', desc: 'Making your salon shine when every competitor is posting transformation photos too.' }
+                ],
+                step1Title: 'Define Your Salon\'s Voice',
+                step1Intro: 'Your brand voice is your salon\'s personality online. Let\'s discover what makes your beauty business unique and irresistible.',
+                prompt1: 'Help me define my beauty salon brand voice. My salon specializes in [hair/nails/skincare/full-service]. My typical client is [describe: age, style, lifestyle]. I want my brand to feel [3 words: e.g., glamorous, relaxing, trendy]. What tone and style should my content have?',
+                prompt2: 'Based on my beauty salon that is [describe vibe], create a simple brand voice guide including: 5 words we always use, 5 words we never use, our tone (luxe/friendly/edgy), and 3 example captions in our brand voice.',
+                step2Title: 'Service Descriptions That Convert',
+                step2Intro: 'Transform basic service lists into irresistible experiences that make clients rush to book appointments.',
+                beforeExample: '"Haircut - $45. Includes wash and style."',
+                afterExample: '"The Signature Cut Experience: Sink into our massage chair as we begin with a stress-melting scalp massage and aromatic wash. Your stylist will craft a personalized cut that works with your hair\'s natural texture and your lifestyle. Leave feeling like the best version of yourself - confident, polished, and ready to turn heads."',
+                prompt3: 'Write a service description for my [service type: haircut/color/facial/manicure]. Details: [duration, what\'s included, products used]. Target client: [who books this]. Feeling: [relaxation/transformation/confidence]. Tone: [from my brand voice]. Make them feel the experience before they book.',
+                pillars: [
+                    { icon: '✨', title: 'Transformations', desc: 'Before & after photos that showcase your incredible skills' },
+                    { icon: '🎬', title: 'Behind the Chair', desc: 'Show your process, products, and the magic happening in your salon' },
+                    { icon: '💄', title: 'Beauty Tips', desc: 'Share expert advice clients can use at home between visits' },
+                    { icon: '🌟', title: 'Client Love', desc: 'Testimonials, tagged photos, and happy client moments' }
+                ],
+                ctaTitle: 'Ready to Make Your Salon the Talk of the Town?',
+                ctaText: 'You now have the complete toolkit to create scroll-stopping content that fills your appointment book.',
+                trustText: 'Join hundreds of salon owners who have transformed their social media presence'
+            },
+            restaurant: {
+                icon: '🍔',
+                name: 'Take Away Restaurant',
+                title: 'Serve It Hot: AI-Powered Content Marketing for Restaurants',
+                subtitle: 'Create mouth-watering content that drives orders - no foodie photographer needed',
+                navBrand: 'Restaurant Content AI',
+                pageTitle: 'Content Marketing Automation for Restaurants',
+                challengeTitle: 'We Understand Your Challenges',
+                challengeIntro: 'Running a restaurant is chaos. Between the kitchen, orders, and keeping customers happy, who has time to post on social media?',
+                challenges: [
+                    { icon: '⏱', title: 'Finding Time', desc: 'Between prep, rush hours, and closing - marketing happens never.' },
+                    { icon: '📸', title: 'Food Photography', desc: 'Making your dishes look as good in photos as they taste in real life.' },
+                    { icon: '📱', title: 'Staying Consistent', desc: 'Posting when you\'re exhausted after a brutal dinner rush.' },
+                    { icon: '✨', title: 'Standing Out', desc: 'Getting noticed when every restaurant is posting food pics.' }
+                ],
+                step1Title: 'Define Your Restaurant\'s Voice',
+                step1Intro: 'Your brand voice is your restaurant\'s personality online. Let\'s discover what makes your food business unique and crave-worthy.',
+                prompt1: 'Help me define my restaurant brand voice. My restaurant specializes in [cuisine type: Italian/Asian/American/fusion]. My typical customer is [describe: families/young professionals/foodies]. I want my brand to feel [3 words: e.g., authentic, fun, premium]. What tone and style should my content have?',
+                prompt2: 'Based on my restaurant that is [describe vibe], create a simple brand voice guide including: 5 words we always use, 5 words we never use, our tone (casual/upscale/playful), and 3 example captions in our brand voice.',
+                step2Title: 'Menu Descriptions That Make Mouths Water',
+                step2Intro: 'Transform boring menu items into irresistible cravings that drive orders and make customers hungry.',
+                beforeExample: '"Cheeseburger - $12. Beef patty with cheese, lettuce, tomato."',
+                afterExample: '"The Ultimate Smash: Two crispy-edged beef patties, smashed to perfection on our flat-top, layered with melty American cheese that oozes with every bite. Topped with crisp lettuce, ripe tomato, and our secret sauce on a buttery brioche bun. This isn\'t just a burger - it\'s the burger your cravings have been dreaming about."',
+                prompt3: 'Write a menu description for my [dish type: burger/pizza/bowl/sandwich]. Ingredients: [list main ingredients]. What makes it special: [cooking method, secret sauce, unique twist]. Tone: [from my brand voice]. Make readers taste it through the screen and order immediately.',
+                pillars: [
+                    { icon: '🍽', title: 'Dish Spotlights', desc: 'Hero shots of your best sellers with mouthwatering descriptions' },
+                    { icon: '👨‍🍳', title: 'Kitchen Action', desc: 'Behind-the-scenes cooking, prep, and the passion in your kitchen' },
+                    { icon: '🎉', title: 'Specials & Deals', desc: 'Limited time offers, daily specials, and combo deals' },
+                    { icon: '😋', title: 'Customer Feasts', desc: 'User-generated content, reviews, and happy customer moments' }
+                ],
+                ctaTitle: 'Ready to Make Your Restaurant the Go-To Spot?',
+                ctaText: 'You now have the complete toolkit to create content that drives orders and keeps customers coming back.',
+                trustText: 'Join hundreds of restaurant owners who have boosted their online orders'
+            }
+        };
+
+        let currentIndustry = 'jewelry';
+
+        // Toggle dropdown
+        function toggleDropdown() {
+            const dropdown = document.getElementById('industryDropdown');
+            const btn = document.querySelector('.industry-btn');
+            dropdown.classList.toggle('open');
+            btn.classList.toggle('open');
+        }
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.industry-selector')) {
+                document.getElementById('industryDropdown').classList.remove('open');
+                document.querySelector('.industry-btn').classList.remove('open');
+            }
+        });
+
+        // Switch industry
+        function switchIndustry(industry) {
+            if (industry === currentIndustry) {
+                toggleDropdown();
+                return;
+            }
+
+            currentIndustry = industry;
+            const content = industryContent[industry];
+
+            // Update button
+            document.querySelector('.current-icon').textContent = content.icon;
+            document.querySelector('.current-industry').textContent = content.name;
+
+            // Update active state
+            document.querySelectorAll('.industry-option').forEach(opt => {
+                opt.classList.remove('active');
+                if (opt.dataset.industry === industry) opt.classList.add('active');
+            });
+
+            // Update page title
+            document.title = content.pageTitle;
+
+            // Update nav brand
+            document.querySelector('.nav-brand').textContent = content.navBrand;
+
+            // Update hero
+            document.getElementById('heroTitle').textContent = content.title;
+            document.getElementById('heroSubtitle').textContent = content.subtitle;
+
+            // Update challenges section
+            const challengeSection = document.getElementById('challenges');
+            challengeSection.querySelector('h2').textContent = content.challengeTitle;
+            challengeSection.querySelector('p').textContent = content.challengeIntro;
+
+            const challengeCards = challengeSection.querySelectorAll('.challenge-card');
+            content.challenges.forEach((challenge, i) => {
+                if (challengeCards[i]) {
+                    challengeCards[i].querySelector('.challenge-icon').textContent = challenge.icon;
+                    challengeCards[i].querySelector('h3').textContent = challenge.title;
+                    challengeCards[i].querySelector('p').textContent = challenge.desc;
+                }
+            });
+
+            // Update Step 1
+            const step1 = document.getElementById('step1');
+            step1.querySelector('.step-title').textContent = content.step1Title;
+            step1.querySelector('.step-intro').textContent = content.step1Intro;
+            document.getElementById('prompt1').textContent = content.prompt1;
+            document.getElementById('prompt2').textContent = content.prompt2;
+
+            // Update Step 2
+            const step2 = document.getElementById('step2');
+            step2.querySelector('.step-title').textContent = content.step2Title;
+            step2.querySelector('.step-intro').textContent = content.step2Intro;
+            step2.querySelector('.before .comparison-text').textContent = content.beforeExample;
+            step2.querySelector('.after .comparison-text').textContent = content.afterExample;
+            document.getElementById('prompt3').textContent = content.prompt3;
+
+            // Update pillars
+            const pillarCards = document.querySelectorAll('.pillar-card');
+            content.pillars.forEach((pillar, i) => {
+                if (pillarCards[i]) {
+                    pillarCards[i].querySelector('.pillar-icon').textContent = pillar.icon;
+                    pillarCards[i].querySelector('h3').textContent = pillar.title;
+                    pillarCards[i].querySelector('p').textContent = pillar.desc;
+                }
+            });
+
+            // Update CTA
+            const ctaSection = document.querySelector('.cta-section');
+            ctaSection.querySelector('h2').textContent = content.ctaTitle;
+            ctaSection.querySelector('p').textContent = content.ctaText;
+            ctaSection.querySelector('.trust-text').textContent = content.trustText;
+
+            // Close dropdown
+            toggleDropdown();
+
+            // Scroll to top smoothly
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
         // Copy to clipboard functionality
         function copyPrompt(promptId, btn) {
             const text = document.getElementById(promptId).textContent;
